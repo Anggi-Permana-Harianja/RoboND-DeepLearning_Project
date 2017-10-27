@@ -5,8 +5,11 @@
 # Links #
 
 My Jupyter Notebook for training without output -> [HERE](https://github.com/tiedyedguy/RoboND-DeepLearning_Project/blob/master/code/model_training.ipynb)
+
 My Jupyter Notebook saved with output 0.46 Score (Warning, slow load) -> [HERE](http://www.prostarrealms.com/model_training.html)
+
 My Weights file -> [HERE](https://github.com/tiedyedguy/RoboND-DeepLearning_Project/blob/master/code/model_weights)
+
 
 # Architecture #
 
@@ -40,6 +43,7 @@ them together.  In the same way, the final decoder outputs our 256 x 256 again a
 to help it.
 
 [Here is the diagram of my NN](https://github.com/tiedyedguy/RoboND-DeepLearning_Project/blob/master/NN.png)
+
 [Here is the model.summary() output](https://github.com/tiedyedguy/RoboND-DeepLearning_Project/blob/master/model_summary.txt)
 
 
