@@ -242,29 +242,28 @@ validation_steps: I never changed this parameter.
 
 workers:  At the start, I tested setting this from 4 to 8 and noticed a slight gain, so kept it from 8 ever since.
 
-# Techniques #
+# Techniques - 1x1 vs Fully Connected Layers #
 
-In my model, I use a special techniques of the 1x1 layer and fully connected layers.
+In my model, I use a special techniques of the 1x1 layer so I wanted to explain what that is.
 
 The 1x1 layer is a cheap way of making a little more depth to our model.  This layer looks at each pixel by pixel
-of it's input and also has a lower depth than the layer before hand.  The 1x1 in my model is when our image is 16x16
+of it's input convolution and is cheap and effiecient.  The 1x1 in my model is when our image is 16x16
 so the image is already 1/16 the size, so image that it is look at each 16th block of the image and doing a quick 
 search for anything there.  
 
-I also only use 8 filters in this layer to reduce the complexity of this layer before starting the decoding.  The
-reason for that is explained next.
+I also only use 8 filters in this layer to reduce the complexity of this layer before starting the decoding.  The reason is that
+the 1x1 is used as a way to just add some more cheap parameters into our system that hopefully gives the model more things
+to improve on.
 
-Fully connected layers just means that all layers in the output of one layer is sent to the input of the next one.  
-Each of the layers in this model are fully connected.  So, the 1x1 layer means that its 8 filters are connected
-to the next section.  This lower than my normal of 32 helps increase the speed of the model because if I would just
-connect the last encoder to the first encoder it would be connecting 32 outputs to 32 inputs.  Now it is connecting
-32 outputs to 8 inputs, then 8 outputs to 32 inputs.
+Fully connected layers just means that all layers in the output of one layer is sent to the input of the next one.  Plus, a fully
+connected layer also doesn't use a convolution with the spatial data, it uses the whole data.  What this means is that it looks
+as the picture as a whole as opposed to looking at smaller sections of the picture.  In a CNN, you can create fully connected
+layers by setting the kernel field as the size of the image you are processing as opposed to setting it to 1 like a 1x1.
 
-So when should use each one?  Well, if you have unlimited resources, go ahead and use fully connected to your leasure, you 
-lucky person you.  Fully connected are for when you need to full paths open but our costly so you want to use them as you can.
-The place to put in a 1x1 is when you are done with an encoding path or a place where you want to just reduce your complexity for
-a layer.  Maybe you have a fully connected layer with a high amount of filters but don't neccisarily want them all connected to the
-next layer.  This would be a place for the 1x1.
+So when should use each one?  Well, this is more of a question of whether a convolution type model is more benefitals to you.
+Image processing and audio processing are able to be done in a CNN because sometimes what you are looking for is clues in spatial
+data or timing in audio.  While a fully connected system could learn the same information, the complexity is what weights it down.
+Using CNNs with 1x1 can give you a highly accurate model at a smaller cost.
 
 # Follow-me Scenarios #
 
